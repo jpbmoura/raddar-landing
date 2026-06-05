@@ -33,12 +33,12 @@ const whats = (msg) =>
 
 /* Mensagens diferentes por CTA = atribuição de origem sem pixel */
 const MSG = {
-  header: "Olá! Vim pela página da Raddar. Pode me enviar a tabela e as condições?",
-  hero: "Olá, Marc'Antônio! Cheguei pelo Instagram da Raddar e quero a tabela para a minha loja.",
-  steps: "Olá! Quero dar o passo 1: pode me enviar a tabela e as condições para a minha loja?",
-  final: "Olá! Li a página da Raddar até o fim e quero a tabela com condições para a minha loja.",
-  float: "Olá! Estou na página da Raddar e quero falar sobre condições para a minha loja.",
-  brand: (b) => `Olá! Quero a tabela da ${b} para a minha loja.`,
+  header: "Olá! Vim pelo site da Raddar e gostaria de fazer um orçamento.",
+  hero: "Olá! Vim pelo site da Raddar e gostaria de fazer um orçamento.",
+  steps: "Olá! Vim pelo site da Raddar e gostaria de fazer um orçamento.",
+  final: "Olá! Vim pelo site da Raddar e gostaria de fazer um orçamento.",
+  float: "Olá! Vim pelo site da Raddar e gostaria de fazer um orçamento.",
+  brand: (b) => `Olá! Vim pelo site da Raddar e gostaria de fazer um orçamento da ${b}.`,
 };
 
 const WhatsIcon = ({ s = 16 }) => (
@@ -344,14 +344,14 @@ export default function RaddarLanding() {
             <p className="label">Antes de chamar</p>
             <h2>As perguntas que todo comprador faz primeiro.</h2>
           </div>
-          <div className="faq">
+          <div className="faq" data-rv>
             {FAQ.map((f, i) => (
-              <div className={`fq ${open === i ? "op" : ""}`} key={f.q} data-rv>
+              <div className={`fq ${open === i ? "op" : ""}`} key={f.q}>
                 <button className="fq-q" onClick={() => setOpen(open === i ? -1 : i)}>
                   {f.q}
                   <span className="fq-x" aria-hidden="true">+</span>
                 </button>
-                <div className="fq-a"><p>{f.a}</p></div>
+                <div className="fq-a"><div className="fq-a-w"><p>{f.a}</p></div></div>
               </div>
             ))}
           </div>
@@ -430,6 +430,8 @@ const css = `
   --mt2:#666;
 }
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+section[id]{scroll-margin-top:80px}
 .v{background:var(--bg);color:var(--tx);font-family:'Geist',system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh}
 .ct{max-width:1024px;margin:0 auto;padding:0 24px}
 a{color:inherit;text-decoration:none}
@@ -554,7 +556,8 @@ img{display:block}
 .fq.op .fq-x{transform:rotate(45deg);color:var(--or)}
 .fq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
 .fq.op .fq-a{grid-template-rows:1fr}
-.fq-a p{overflow:hidden;min-height:0;padding:0 0 20px;font-size:14px;line-height:1.65;color:var(--mt);max-width:560px}
+.fq-a-w{overflow:hidden;min-height:0}
+.fq-a p{padding:0 0 20px;font-size:14px;line-height:1.65;color:var(--mt);max-width:560px}
 
 /* ---- cta final ---- */
 .final{padding:112px 0;border-bottom:1px solid var(--ln);text-align:center}
