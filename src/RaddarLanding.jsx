@@ -85,19 +85,22 @@ const STEPS = [
 ];
 
 const BRANDS = [
-  { key: "plastilania", name: "Plastilânia", cat: "Plásticos e descartáveis" },
-  { key: "mpr", name: "Grupo MPR", cat: "Limpeza e perfumação do lar", sub: "Coperalcool · Coala Home · Vinagreen · Zulu" },
-  { key: "bocardo", name: "Bocardo", cat: "Alimentos" },
-  { key: "chas_real", name: "Chás Real", cat: "Chás · desde 1834" },
+  { key: "plastilania", name: "Plastilânia", cat: "Descartáveis e utilidades plásticas" },
+  { key: "mpr", name: "Grupo MPR", cat: "Higiene, limpeza e perfumação", sub: "Coperalcool · Coala Home · Vinagreen · Zulu" },
+  { key: "bocardo", name: "Bocardo", cat: "Doces, recheios e refrescos" },
+  { key: "chas_real", name: "Chás Real", cat: "Chás e erva-mate · desde 1834" },
   { key: "massas_santana", name: "Massas Santana", cat: "Massas alimentícias" },
-  { key: "cia_dos_frios", name: "Cia dos Frios", cat: "Congelados" },
+  { key: "cia_dos_frios", name: "Cia dos Frios", cat: "Frios e pescados congelados" },
   { key: "coco_cia", name: "Coco & Cia", cat: "Derivados de coco" },
 ];
 
 const NETWORKS = [
-  "Super Fácil Atacado", "Rede Cidade", "Rede Mais", "Comercial do Trigo",
-  "Atacadão Vicunha", "Central JL", "Nordestão", "Favoritos",
-  "Casa Norte", "Rebouças", "Ligzarb", "Rede Queiroz",
+  "Super Fácil Atacado", "Atacadão Vicunha", "Rede Mais Supermercados",
+  "Supermercados Nordestão", "Comercial do Trigo", "Central Distribuição JL",
+  "Favoritos Supermercados", "Casa Norte", "Rebouças Supermercado",
+  "Rede Cidade", "Rede Queiroz", "Rede Oeste", "Rede Seridó",
+  "O Baratão das Embalagens", "Brasil Distribuidora de Embalagens",
+  "Eloi Chaves", "Estrelão Distribuidora", "Seridó Plast",
 ];
 
 const FAQ = [
@@ -178,9 +181,11 @@ export default function RaddarLanding() {
       {/* ============ HERO ============ */}
       <section className="hero" id="topo">
         <div className="ct">
-          <p className="label" data-rv>Representação comercial · Varejo do RN</p>
+          <p className="label live" data-rv>
+            <span className="dot" />Representação comercial · Varejo do RN
+          </p>
           <h1 data-rv style={{ transitionDelay: "60ms" }}>
-            Compre direto da indústria.
+            Compre <span className="hl">direto da indústria</span>.
             <br />
             <span className="dim">A margem do intermediário fica com você.</span>
           </h1>
@@ -195,9 +200,11 @@ export default function RaddarLanding() {
             </button>
             <a href="#marcas" className="bt-ghost">Ver as marcas</a>
           </div>
-          <p className="trust" data-rv style={{ transitionDelay: "240ms" }}>
-            Resposta no mesmo dia · Sem pedido mínimo para conversar · Nota fiscal direto da fábrica
-          </p>
+          <div className="trust" data-rv style={{ transitionDelay: "240ms" }}>
+            <span className="tchip">Resposta no mesmo dia</span>
+            <span className="tchip">Sem pedido mínimo pra conversar</span>
+            <span className="tchip">Nota fiscal direto da fábrica</span>
+          </div>
         </div>
 
         {/* stats — prova honesta */}
@@ -390,7 +397,7 @@ export default function RaddarLanding() {
           </div>
           <div>
             <span className="label">Endereço</span>
-            <p>R. Teatrólogo Meira Pires, 2357 · Capim Macio<br />Natal/RN · 59.080-090</p>
+            <p>Av. Romualdo Galvão, 2109 · Sala 515 · Empresarial Trade Center<br />Lagoa Nova · Natal/RN · CEP 59.056-165</p>
           </div>
           <div>
             <span className="label">Empresa</span>
@@ -458,8 +465,8 @@ img{display:block}
 
 /* ---- botões ---- */
 .bt{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;cursor:pointer;font-family:'Geist',sans-serif;
-  font-weight:600;border-radius:8px;background:var(--or);color:#000;transition:background .15s}
-.bt:hover{background:#FFA63A}
+  font-weight:600;border-radius:8px;background:var(--or);color:#000;transition:background .15s,transform .15s,box-shadow .15s}
+.bt:hover{background:#FFA63A;transform:translateY(-1px)}
 .bt-s{font-size:13px;padding:8px 14px}
 .bt-l{font-size:14.5px;padding:13px 22px}
 .bt-xl{font-size:15px;padding:15px 28px}
@@ -471,9 +478,23 @@ img{display:block}
 .hero{padding-top:150px}
 .hero h1{font-size:clamp(32px,5.4vw,58px);font-weight:700;line-height:1.08;letter-spacing:-0.045em;margin:20px 0 22px}
 .lead{font-size:16px;line-height:1.65;color:var(--mt);max-width:600px;margin-bottom:32px}
-.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}
+.hero-cta .bt-l{box-shadow:0 10px 34px -10px rgba(247,148,29,.55)}
+.hero-cta .bt-l:hover{box-shadow:0 16px 44px -10px rgba(247,148,29,.75)}
 @media(max-width:560px){.hero-cta .bt-l{width:100%}.hero-cta .bt-ghost{width:100%;justify-content:center}}
-.trust{font-size:12.5px;color:var(--mt2);margin-bottom:72px;line-height:1.6}
+.trust{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:72px}
+.tchip{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--mt);
+  border:1px solid var(--ln);background:var(--bg2);border-radius:999px;padding:6px 13px}
+.tchip::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--or);box-shadow:0 0 6px rgba(247,148,29,.7)}
+
+/* dot estático na label */
+.label.live{display:inline-flex;align-items:center;gap:9px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--or);box-shadow:0 0 8px rgba(247,148,29,.6)}
+
+/* entrada da hero — anima uma vez ao carregar */
+.hero [data-rv]{filter:blur(7px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1),filter .7s ease}
+.hero [data-rv].in{filter:blur(0)}
+@media(prefers-reduced-motion:reduce){.hero [data-rv]{filter:none;transition:opacity .4s ease}}
 
 .stats{border-block:1px solid var(--ln);background:var(--bg2)}
 .stats-in{display:grid;grid-template-columns:repeat(3,1fr)}
