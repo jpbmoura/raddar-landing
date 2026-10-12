@@ -1,11 +1,11 @@
 # Raddar Representações — Landing Page
 
 Landing page de conversão da Raddar, voltada para compradores de supermercados
-e atacados do Rio Grande do Norte. Construída com **React + Vite**, tema escuro
-minimalista, conversão única via **WhatsApp**.
+e atacados do Rio Grande do Norte. Construída com **React + Vite + Motion**, tema escuro
+editorial (Instrument Serif + Geist), conversão única via **WhatsApp**.
 
-Todas as imagens (logo Raddar, foto do fundador e logos das marcas) estão
-**embutidas no código** — não há dependência de arquivos externos ou CDN.
+As imagens (logo Raddar, foto do fundador e logos das marcas) ficam em
+`src/assets/` e são otimizadas/versionadas pelo Vite no build.
 
 ---
 
@@ -53,17 +53,20 @@ importar o repositório: ela detecta Vite sozinha.
 
 ## Onde editar cada coisa
 
-Tudo que muda com frequência está no topo de `src/RaddarLanding.jsx`:
+Tudo que muda com frequência está em `src/content.js`:
 
-| O que                         | Onde                                          |
-| ----------------------------- | --------------------------------------------- |
-| Número do WhatsApp            | constante `WHATS_NUMBER`                      |
-| Mensagens pré-preenchidas     | objeto `MSG` (uma por seção = atribuição)     |
-| Marcas do portfólio           | array `BRANDS` + imagens em `BLOGO`           |
-| Dores / passos / FAQ          | arrays `PAINS`, `STEPS`, `FAQ`                |
-| Redes (prova social)          | array `NETWORKS`                              |
-| Citação do fundador           | seção "QUEM ATENDE" no JSX                    |
-| Cores e tipografia            | bloco `css` no fim do arquivo (variáveis `:root`) |
+| O que                         | Onde                                                  |
+| ----------------------------- | ----------------------------------------------------- |
+| Número do WhatsApp            | `WHATS_NUMBER` em `src/content.js`                    |
+| Mensagens pré-preenchidas     | objeto `MSG` (uma por seção = atribuição)             |
+| Marcas do portfólio           | array `BRANDS` + imagens em `src/assets/brands/`      |
+| Números do topo               | array `STATS`                                         |
+| Dores / passos / FAQ          | arrays `PAINS`, `STEPS`, `FAQ`                        |
+| Redes (faixa em movimento)    | array `NETWORKS`                                      |
+| Cidades do mapa de cobertura  | array `CITIES`                                        |
+| Citação do fundador           | objeto `FOUNDER` + foto em `src/assets/founder.webp`  |
+| Cores, fontes e espaçamentos  | variáveis `:root` no topo de `src/styles.css`         |
+| Layout de cada seção          | `src/components/*.jsx` (um arquivo por seção)         |
 
 ### Atribuição de leads sem pixel
 
@@ -79,10 +82,16 @@ objeto `MSG` sem manter essa diferenciação.
 
 ```
 raddar-landing/
-├── index.html              # título, meta tags e OG (SEO)
+├── index.html              # título, meta tags, OG (SEO) e fontes
 ├── package.json
 ├── vite.config.js
 └── src/
     ├── main.jsx            # ponto de entrada
-    └── RaddarLanding.jsx   # toda a página (componente + estilos + imagens)
+    ├── App.jsx             # ordem das seções
+    ├── content.js          # textos, marcas, WhatsApp
+    ├── styles.css          # todo o visual
+    ├── assets/             # logo, foto do fundador, logos das marcas
+    └── components/         # uma seção por arquivo + Reveal/Counter (animações)
 ```
+
+As animações respeitam a preferência do sistema "reduzir movimento".
